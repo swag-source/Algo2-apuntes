@@ -10,3 +10,4 @@ Este es el índice de la materia para ordenar los contenidos según los temas di
 * [[Complejidad computacional]]
 * [[ABS y AVL (Árboles busqueda binaria)]]
 * 
+**Aclaración: repositorio en construcción**
