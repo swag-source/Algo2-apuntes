@@ -1,5 +1,4 @@
-# Algoritmos y Estructuras de Datos 2
-Este es el índice de la materia para ordenar los contenidos según los temas dictados.
+Este es el gráfo de la materia para ordenar los contenidos según nodos.
 ***
 * [[Triplas de Hoare & Weakest precondition]] 
 * [[GIT]]
