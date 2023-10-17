@@ -8,6 +8,6 @@ Este es el índice de la materia para ordenar los contenidos según los temas di
 * [[Correctitud de TADs - Conjuntos Acotados]]
 * [[ABS/REPS (Abstracción y Representación)]]
 * [[Complejidad computacional]]
-* [[ABS y AVL (Árboles busqueda binaria)]]
+* [[ABS y AVL (Árboles binarios)]]
 * 
 **Aclaración: repositorio en construcción**
