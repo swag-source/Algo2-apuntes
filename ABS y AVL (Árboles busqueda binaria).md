@@ -3,7 +3,11 @@
 1. Estructura de datos
 2. Diccionario/Conjunto
 3. Complejidad/Eficiencia
-4. 
+4. Árboles binarios
+5. ABB
+6. AVL
+
+Playlist ABB y AVL: https://www.youtube.com/watch?v=62HzsyiQufI&list=PLgKwkU8blA_NxMbxyeHq4l3Zkb4lg51_y
 
 ### Repaso
 * Planteamos un nuevo capítulo en la materia.
@@ -13,7 +17,8 @@
 #### Diccionario (estructura de dato)
 Recordamos la nueva estructura para el TAD diccionario.
 
-*Insertar foto TAD diccionario*
+**TAD Diccionario**
+![[Pasted image 20231017161222.png]]
 
 * Recordamos que los diccionarios los utilizamos cuando queremos asociar un determinado valor K a un valor V (ej: K: manzana -> V: cantidad).
 * Otros ejemplos: El diccionario del corrector ortográfico (a cada horror ortográfico nuestro se le asocia la palabra "correcta" que quisimos escribir para poder reemplazarla).
@@ -99,4 +104,64 @@ Podríamos representar la misma idea de diccionario a partir de un arreglo (seq\
 
 ** Insertar diapositiva de ¿Qué es un arbol binario de busqueda?
 
+** Insertar ejemplo de un ABB.
 
+* El invariante de representación para nuestro árbol deberá verificar que:
+-> Todas las claves a la **izquierda** del nodo serán **menores** al valor del nodo donde nos paremos(raiz).
+-> Todas las claves a la **derecha** del nodo serán **mayores** al valor del nodo donde nos paremos(raiz).
+-> Dado una raiz, si agarramos el subarbol izquierdo también tiene que ser un ABB
+-> Dado una raiz, si agarramos el subarbol derecho también tiene que ser un ABB.
+
+
+**Ejemplo:** Sea D = {49,21,52,56,67,54,77,83,75}
+
+-> La siguiente es la representación de D a partir de un Árbol Binario de Búsqueda
+
+![[Pasted image 20231017151037.png]]
+
+* Si tuviera que insertar un elemento en mi ABB (0060), sería visualmente así.
+
+![[Pasted image 20231017151621.png]]
+
+#### Complejidades sobre ABB's
+
+**Obtener**
+	* Depende de la distancia del nodo a la raíz.
+-> Peor caso (arreglo ordenado)
+	* O(n)
+-> Caso promedio (Demostración al final)
+	* O(log n)
+
+
+**Eliminar**
+**(caso 1)**
+**Borrar nodo sin hijos (hoja)**
+![[Pasted image 20231017160538.png]]
+* Solamente busco la raiz que tenga la hoja que queremos eliminar.
+-> Peor caso (arreglo ordenado)
+	* O(n)
+-> Caso promedio (Demostración al final)
+	* O(log n)
+
+**(caso 2)**
+![[Pasted image 20231017160608.png]]
+
+
+**(Caso 3)**
+**Borrar nodo con dos hijos**
+![[Pasted image 20231017160714.png]]
+
+**Conclusión**
+* En el peor caso, ambos costos de eliminar son lineales:
+	O(n) + O(n) = O(n)
+****
+#### Notas extra Complejidad
+* En los ABB, podemos ver que la complejidad tiene mucho que ver con la "profundida" de nuestro arbol.
+* El caso de la derecha es casi igual a una lista enlazada.
++ Si tenemos los siguientes árboles, vemos que el segundo es más costoso que el primero porque tenemos que comparar linea por linea, en el primero solamente comparamos dependiendo la altura del árbol.
+
+![[Pasted image 20231017152529.png]]
+
+* Si bien n = 7 para ambos árboles, el costo de insertar en el árbol izquierdo es menor al árbol derecho.
+
+-> Decimos que el árbol izquierdo está **Balanceado** y el derecho **Desbalanceado** (porque los elementos están ordenados).
