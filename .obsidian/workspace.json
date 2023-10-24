@@ -1,0 +1,150 @@
+{
+  "main": {
+    "id": "94f2cadd3e4b3bbe",
+    "type": "split",
+    "children": [
+      {
+        "id": "95a18319ac3b6a4b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1e362fbad31b1341",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "6b71daf6564184bd",
+    "type": "split",
+    "children": [
+      {
+        "id": "108d8bcb80538952",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5ab9103888c44f79",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "72e11ed2ada657c0",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "c1ea99f95d78abbd",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "7790119d06907291",
+    "type": "split",
+    "children": [
+      {
+        "id": "117f9f9ebc6ee0ca",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "91f7ec3bfd236594",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "aa78e54d23eff56f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "16b4d606e271c035",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "0f19caa0eb0b59a1",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "1e362fbad31b1341",
+  "lastOpenFiles": [
+    "Algoritmos y Estructuras de Datos 2.md",
+    "ABB y AVL (Árboles busqueda binaria).md",
+    "Pasted image 20231017152529.png.md",
+    "ABB y AVL (Árboles busqueda binaria).pdf",
+    "Complejidad computacional.md",
+    "README.md"
+  ]
+}
