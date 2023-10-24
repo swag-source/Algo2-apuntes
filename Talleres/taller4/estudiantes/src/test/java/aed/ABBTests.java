@@ -196,13 +196,13 @@ class ABBTests {
 
     @Test
     void testToString() {
-        ABB<Integer> c = new ABB<Integer>();
+        ABB<Integer> c = new ABB<Integer>(); // [5,4,7,6,8,1]
         c.insertar(5);
         c.insertar(4);
         c.insertar(7);
         c.insertar(6);
         c.insertar(8);
-        assertEquals("{4,5,6,7,8}", c.toString());
+        assertEquals("{4,5,6,7,8}", c.toString());                         w
         c.eliminar(5);
         c.eliminar(7);
         assertEquals("{4,6,8}", c.toString());

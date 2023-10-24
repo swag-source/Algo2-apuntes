@@ -15,7 +15,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
 
         // Constructor del objeto
         Nodo(T d) {
-            d = data;
+            data = d;
             hijoDerecho = null;
             hijoIzquierdo = null;
             padre = null;
@@ -29,32 +29,93 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     }
 
     public int cardinal() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return cardinal_recursivo(root);
+    }
+
+    public int cardinal_recursivo(Nodo nodo){
+        int _cardinalRecursivo = 0;
+
+        if(nodo != null){
+            _cardinalRecursivo++;
+            _cardinalRecursivo += cardinal_recursivo(nodo.hijoDerecho) + cardinal_recursivo(nodo.hijoIzquierdo);
+        }
+
+        return _cardinalRecursivo;
     }
 
     public T minimo(){
-        throw new UnsupportedOperationException("No implementada aun");
+        while(root.hijoIzquierdo != null){
+            root = root.hijoIzquierdo;
+        }
+        return root.data;
     }
 
     public T maximo(){
-        throw new UnsupportedOperationException("No implementada aun");
+        while(root.hijoDerecho != null){
+            root = root.hijoDerecho;
+        }
+        return root.data;
     }
 
     public void insertar(T elem){
-        throw new UnsupportedOperationException("No implementada aun");
+        if (root == null){
+            root = new Nodo(elem);
+        } else {
+            insertarEnHijo(root, elem);
+        }
+    }
+
+    public void insertarEnHijo(Nodo arbol, T elem){
+
+        if(arbol.data.compareTo(elem) <= 0){
+            if (arbol.hijoDerecho == null) {
+                arbol.hijoDerecho = new Nodo(elem);
+            } else {
+                insertarEnHijo(arbol.hijoDerecho, elem);
+            }
+        } else {
+            if(arbol.hijoIzquierdo == null){
+                arbol.hijoIzquierdo = new Nodo(elem);
+            } else {
+                insertarEnHijo(arbol.hijoIzquierdo, elem);
+            }
+        }
     }
 
     public boolean pertenece(T elem){
-        throw new UnsupportedOperationException("No implementada aun");
+        if(root == null){
+            return false;
+        } else {
+            return perteneceRecursivo(elem, root);
+        }
+    }
+
+    public boolean perteneceRecursivo(T elem, Nodo nodo){
+        boolean res = false;
+
+        if (nodo == null){
+            return false;
+        }
+
+        if (nodo.data == elem){
+            res = true;
+        } else {
+            res = perteneceRecursivo(elem, nodo.hijoIzquierdo) || perteneceRecursivo(elem, nodo.hijoDerecho);
+        }
+
+        return res;
     }
 
     public void eliminar(T elem){
         throw new UnsupportedOperationException("No implementada aun");
     }
 
+    @Override
     public String toString(){
         throw new UnsupportedOperationException("No implementada aun");
     }
+
+
 
     private class ABB_Iterador implements Iterador<T> {
         private Nodo _actual;
