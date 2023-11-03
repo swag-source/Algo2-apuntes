@@ -82,6 +82,22 @@ class ABBTests {
     }
 
     @Test
+    void eliminar_elemento_hoja() {
+        ABB<Integer> conjunto = new ABB<Integer>();
+
+        conjunto.insertar(8);
+        conjunto.insertar(3);
+        conjunto.insertar(5);
+        conjunto.insertar(4);
+        conjunto.insertar(9);
+        conjunto.insertar(10);
+        conjunto.eliminar(10);
+        assertEquals(6, conjunto.cardinal());
+        assertEquals(9, conjunto.maximo());
+        assertEquals(3, conjunto.minimo());
+
+    }
+    @Test
     void eliminar_elemento_con_un_descendiente() {
         ABB<Integer> conjunto = new ABB<Integer>();
         
@@ -196,13 +212,13 @@ class ABBTests {
 
     @Test
     void testToString() {
-        ABB<Integer> c = new ABB<Integer>(); // [5,4,7,6,8,1]
+        ABB<Integer> c = new ABB<Integer>(); //
         c.insertar(5);
         c.insertar(4);
         c.insertar(7);
         c.insertar(6);
         c.insertar(8);
-        assertEquals("{4,5,6,7,8}", c.toString());                         w
+        assertEquals("{4,5,6,7,8}", c.toString());
         c.eliminar(5);
         c.eliminar(7);
         assertEquals("{4,6,8}", c.toString());

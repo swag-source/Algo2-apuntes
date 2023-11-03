@@ -6,7 +6,7 @@ import java.util.*;
 // elem1.compareTo(elem2) devuelve un entero. Si es mayor a 0, entonces elem1 > elem2
 public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     // Agregar atributos privados del Conjunto
-
+    private int longitud;
     private class Nodo {
         T data;
         Nodo padre;
@@ -26,21 +26,11 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
 
     public ABB() {
         root = null;
+        longitud = 0;
     }
 
     public int cardinal() {
-        return cardinal_recursivo(root);
-    }
-
-    public int cardinal_recursivo(Nodo nodo){
-        int _cardinalRecursivo = 0;
-
-        if(nodo != null){
-            _cardinalRecursivo++;
-            _cardinalRecursivo += cardinal_recursivo(nodo.hijoDerecho) + cardinal_recursivo(nodo.hijoIzquierdo);
-        }
-
-        return _cardinalRecursivo;
+        return longitud;
     }
 
     public T minimo(){
@@ -58,24 +48,31 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     }
 
     public void insertar(T elem){
-        if (root == null){
-            root = new Nodo(elem);
+
+        if(pertenece(elem)){
         } else {
-            insertarEnHijo(root, elem);
+            if (root == null){
+                root = new Nodo(elem);
+                longitud++;
+            } else {
+                insertarEnHijo(root, elem);
+            }
         }
     }
 
     public void insertarEnHijo(Nodo arbol, T elem){
-
+        // checkear caso elem igual a arbol.data;
         if(arbol.data.compareTo(elem) <= 0){
             if (arbol.hijoDerecho == null) {
                 arbol.hijoDerecho = new Nodo(elem);
+                this.longitud++;
             } else {
                 insertarEnHijo(arbol.hijoDerecho, elem);
             }
         } else {
             if(arbol.hijoIzquierdo == null){
                 arbol.hijoIzquierdo = new Nodo(elem);
+                this.longitud++;
             } else {
                 insertarEnHijo(arbol.hijoIzquierdo, elem);
             }
@@ -106,23 +103,75 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         return res;
     }
 
+
     public void eliminar(T elem){
-        eliminarRecursivo(root, elem);
+        if (this.pertenece(elem)){
+            searchAndDestroy(root, elem);
+        }
     }
 
-    private void eliminarRecursivo(Nodo nodo, T elem){
-        throw new UnsupportedOperationException("No implementada aun");
+    private void searchAndDestroy(Nodo nodo, T elem) {
+        // caso 1: elemento es null
+
+        if (nodo == null){
+        }
+        //
+        if (nodo.data == elem){
+            // caso es hoja
+            if(nodo.hijoIzquierdo == null && nodo.hijoDerecho == null){
+
+                nodo = null;
+            }
+            // caso con un hijo
+
+            if (nodo.hijoIzquierdo == null && nodo.hijoDerecho != null) {
+                nodo.padre = nodo.hijoDerecho;
+            } else if (nodo.hijoIzquierdo != null && nodo.hijoDerecho == null) {
+                nodo.padre = nodo.hijoIzquierdo;
+            }
+
+            longitud--;
+        } else {
+            if (elem.compareTo(nodo.data) > 0){
+                searchAndDestroy(nodo.hijoDerecho, elem);
+            } else {
+                searchAndDestroy(nodo.hijoIzquierdo, elem);
+            }
+        }
+
+
+        // caso 2: elemento no tiene ningun hijo
+
     }
 
     @Override
     public String toString(){
-        return toStringRecursivo(this.root);
+        return "{" + toStringRecursivo(root) + "}";
     }
 
     private String toStringRecursivo(Nodo nodo){
-        throw new UnsupportedOperationException("Falta implementar");
-    }
+        if (nodo == null){
+            return "";
+        } else {
 
+            String arbolIzquierdo = toStringRecursivo(nodo.hijoIzquierdo);
+            if (!arbolIzquierdo.equals("")) {
+                arbolIzquierdo = arbolIzquierdo + ",";
+            }
+
+            String arbolDerecho = toStringRecursivo(nodo.hijoDerecho);
+            if (!arbolDerecho.equals("")) {
+                arbolDerecho = "," + arbolDerecho;
+            }
+
+            return (arbolIzquierdo + nodo.data.toString() + arbolDerecho);
+        }
+
+
+        // esta implementacion sigue la idea de haskell de la siguiente manera
+        // toStringRecursivo [] | []
+        // toStringRecursivo arbol || toStringRecursivo(arbol.izquierda) ++ [data] ++ toStringRecursivo(arbol.derecha)
+    }
 
 
     private class ABB_Iterador implements Iterador<T> {
@@ -133,7 +182,10 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         }
 
         public T siguiente() {
-            throw new UnsupportedOperationException("No implementada aun");
+            while(iterador().haySiguiente()){
+                T res = iterador().siguiente();
+            }
+            return this._actual.data;
         }
     }
 
