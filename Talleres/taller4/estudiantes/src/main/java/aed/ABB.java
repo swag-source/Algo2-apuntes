@@ -107,12 +107,20 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     }
 
     public void eliminar(T elem){
+        eliminarRecursivo(root, elem);
+    }
+
+    private void eliminarRecursivo(Nodo nodo, T elem){
         throw new UnsupportedOperationException("No implementada aun");
     }
 
     @Override
     public String toString(){
-        throw new UnsupportedOperationException("No implementada aun");
+        return toStringRecursivo(this.root);
+    }
+
+    private String toStringRecursivo(Nodo nodo){
+        throw new UnsupportedOperationException("Falta implementar");
     }
 
 
@@ -120,10 +128,10 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     private class ABB_Iterador implements Iterador<T> {
         private Nodo _actual;
 
-        public boolean haySiguiente() {            
+        public boolean haySiguiente() {
             throw new UnsupportedOperationException("No implementada aun");
         }
-    
+
         public T siguiente() {
             throw new UnsupportedOperationException("No implementada aun");
         }
@@ -132,5 +140,4 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     public Iterador<T> iterador() {
         return new ABB_Iterador();
     }
-
 }
