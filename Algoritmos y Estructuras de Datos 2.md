@@ -5,7 +5,12 @@ Este es el gráfo de la materia para ordenar los contenidos según nodos.
 * [[Algoritmos de busqueda (search) y ordenamiento (sorting) sobre secuencias]]
 * [[TAD's (Tipos Abstractos de Datos)]]
 * [[Correctitud de TADs - Conjuntos Acotados]]
-* [[ABS/REPS (Abstracción y Representación)]]
+* [[REP y ABS (Abstracción y Representación)]]
 * [[Complejidad computacional]]
-* [[ABS y AVL (Árboles busqueda binaria)]]
-* 
+* [[ABB y AVL (Árboles busqueda binaria)]]
+* [[Heap (Árbol binario)]]
+* [[Hashing]]
+* [[Algoritmos de Sorting]]
+* [[Práctica 8 - Sorting]] (adicional)
+* [[Resumen Algoritmos de Sorting]]
+* [[Práctica Parcial]]

@@ -34,113 +34,152 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     }
 
     public T minimo(){
-        while(root.hijoIzquierdo != null){
-            root = root.hijoIzquierdo;
+        Nodo tmp = root;
+        while(tmp.hijoIzquierdo != null){
+            tmp = tmp.hijoIzquierdo;
         }
-        return root.data;
+        return tmp.data;
     }
 
     public T maximo(){
-        while(root.hijoDerecho != null){
-            root = root.hijoDerecho;
+        Nodo tmp = root;
+        while(tmp.hijoDerecho != null){
+            tmp = tmp.hijoDerecho;
         }
-        return root.data;
+        return tmp.data;
     }
 
     public void insertar(T elem){
+        Nodo nuevo = new Nodo(elem);
+        Nodo actual = root;
+        int i = 0;
+        if (!this.pertenece(elem)){
+            while (i < longitud){
+                if (actual.data.compareTo(elem) < 0 && actual.hijoDerecho != null){
+                    actual = actual.hijoDerecho;
+                } else if (actual.data.compareTo(elem) > 0 && actual.hijoIzquierdo != null) {
+                    actual = actual.hijoIzquierdo;
+                }
+                i ++;
+            }
 
-        if(pertenece(elem)){
-        } else {
-            if (root == null){
+            if (longitud == 0){
                 root = new Nodo(elem);
-                longitud++;
-            } else {
-                insertarEnHijo(root, elem);
+            } else if (actual.data.compareTo(elem) < 0){
+                actual.hijoDerecho = nuevo;
+                nuevo.padre = actual;
+            }else if (actual.data.compareTo(elem) > 0){
+                actual.hijoIzquierdo = nuevo;
+                nuevo.padre = actual;
             }
-        }
-    }
-
-    public void insertarEnHijo(Nodo arbol, T elem){
-        // checkear caso elem igual a arbol.data;
-        if(arbol.data.compareTo(elem) <= 0){
-            if (arbol.hijoDerecho == null) {
-                arbol.hijoDerecho = new Nodo(elem);
-                this.longitud++;
-            } else {
-                insertarEnHijo(arbol.hijoDerecho, elem);
-            }
-        } else {
-            if(arbol.hijoIzquierdo == null){
-                arbol.hijoIzquierdo = new Nodo(elem);
-                this.longitud++;
-            } else {
-                insertarEnHijo(arbol.hijoIzquierdo, elem);
-            }
+            longitud ++;
         }
     }
 
     public boolean pertenece(T elem){
-        if(root == null){
-            return false;
-        } else {
-            return perteneceRecursivo(elem, root);
-        }
-    }
-
-    public boolean perteneceRecursivo(T elem, Nodo nodo){
+        Nodo actual = root;
         boolean res = false;
-
-        if (nodo == null){
-            return false;
+        int i = 0;
+        while (i < longitud){
+            if (actual.data.compareTo(elem) == 0){
+                res = true;
+            } else if (actual.data.compareTo(elem) > 0 && actual.hijoIzquierdo != null){
+                actual = actual.hijoIzquierdo;
+            } else if (actual.hijoDerecho != null) {
+                actual = actual.hijoDerecho;
+            }
+            i ++;
         }
-
-        if (nodo.data == elem){
-            res = true;
-        } else {
-            res = perteneceRecursivo(elem, nodo.hijoIzquierdo) || perteneceRecursivo(elem, nodo.hijoDerecho);
-        }
-
         return res;
     }
-
-
     public void eliminar(T elem){
+        Nodo actual = root;
         if (this.pertenece(elem)){
-            searchAndDestroy(root, elem);
+            while (actual.data.compareTo(elem) != 0){
+                if (actual.data.compareTo(elem) > 0){
+                    actual = actual.hijoIzquierdo;
+                } else {
+                    actual = actual.hijoDerecho;
+                }
+            }
+
+            // Caso 1
+            if ( actual.hijoIzquierdo == null && actual.hijoDerecho == null){
+                if (actual.padre == null){
+                    root.data = null;
+                } else {
+                    if (actual.padre.data.compareTo(elem) > 0){
+                        actual.padre.hijoIzquierdo = null;
+                    } else {
+                        actual.padre.hijoDerecho = null;
+                    }
+                }
+
+                //Caso 2 :
+            } else if (actual.hijoIzquierdo == null && actual.hijoDerecho != null){
+                if (actual.padre == null){
+                    actual.hijoDerecho.padre = null;
+                    root = actual.hijoDerecho;//
+                } else if (actual.padre.data.compareTo(elem) > 0){
+                    actual.padre.hijoIzquierdo = actual.hijoDerecho;
+                    actual.hijoDerecho.padre = actual.padre;
+                } else {
+                    actual.padre.hijoDerecho = actual.hijoDerecho;
+                    actual.hijoDerecho.padre = actual.padre;
+                }
+
+                //Caso 2
+            } else if (actual.hijoIzquierdo != null && actual.hijoDerecho == null){
+                if (actual.padre == null){
+                    actual.hijoIzquierdo.padre = null;
+                    root = actual.hijoIzquierdo;//
+                } else if (actual.padre.data.compareTo(elem) > 0){
+                    actual.padre.hijoIzquierdo = actual.hijoIzquierdo;
+                    actual.hijoIzquierdo.padre = actual.padre;
+                } else {
+                    actual.padre.hijoDerecho = actual.hijoIzquierdo;
+                    actual.hijoIzquierdo.padre = actual.padre;
+                }
+
+                //Caso en que tiene ambas descendencias
+            } else {
+
+                Nodo min = minimoDelSubABB(actual.hijoDerecho);
+
+                eliminar(min.data);
+                longitud ++;
+
+                //asignar
+                if (actual.padre == null){
+                    min.padre = null;
+                    root = min;//
+                } else if (actual.padre.data.compareTo(elem) > 0){
+                    actual.padre.hijoIzquierdo = min;
+                    min.padre = actual.padre;
+                } else {
+                    actual.padre.hijoDerecho = min;
+                    min.padre = actual.padre;
+                }
+
+                //asignar
+                actual.hijoIzquierdo.padre = min;
+                min.hijoIzquierdo = actual.hijoIzquierdo;
+
+                if (actual.hijoDerecho != null){
+                    actual.hijoDerecho.padre = min;
+                    min.hijoDerecho = actual.hijoDerecho;
+                }
+
+            }
+            longitud --;
         }
     }
 
-    private void searchAndDestroy(Nodo nodo, T elem) {
-        // caso 1: elemento es null
-
-        if (nodo == null){
+    public Nodo minimoDelSubABB(Nodo actual){
+        while(actual.hijoIzquierdo != null){
+            actual = actual.hijoIzquierdo;
         }
-        //
-        if (nodo.data == elem){
-            // caso es hoja
-            if(nodo.hijoIzquierdo == null && nodo.hijoDerecho == null){
-
-                nodo = null;
-            }
-            // caso con un hijo
-
-            if (nodo.hijoIzquierdo == null && nodo.hijoDerecho != null) {
-                nodo.padre = nodo.hijoDerecho;
-            } else if (nodo.hijoIzquierdo != null && nodo.hijoDerecho == null) {
-                nodo.padre = nodo.hijoIzquierdo;
-            }
-
-            longitud--;
-        } else {
-            if (elem.compareTo(nodo.data) > 0){
-                searchAndDestroy(nodo.hijoDerecho, elem);
-            } else {
-                searchAndDestroy(nodo.hijoIzquierdo, elem);
-            }
-        }
-
-
-        // caso 2: elemento no tiene ningun hijo
+        return actual;
 
     }
 
@@ -170,22 +209,37 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
 
         // esta implementacion sigue la idea de haskell de la siguiente manera
         // toStringRecursivo [] | []
-        // toStringRecursivo arbol || toStringRecursivo(arbol.izquierda) ++ [data] ++ toStringRecursivo(arbol.derecha)
+        // toStringRecursivo arbol || toStringRecursivo(arbol.hijoIzquierdo) ++ [data] ++ toStringRecursivo(arbol.hijoDerecho)
     }
-
 
     private class ABB_Iterador implements Iterador<T> {
         private Nodo _actual;
 
+        ABB_Iterador(){
+            _actual = null;
+        }
+
         public boolean haySiguiente() {
-            throw new UnsupportedOperationException("No implementada aun");
+            return maximo() != _actual ;
         }
 
         public T siguiente() {
-            while(iterador().haySiguiente()){
-                T res = iterador().siguiente();
+            Nodo siguiente = null;
+            if (_actual == null){
+                siguiente = minimoDelSubABB(root);
+            } else if (haySiguiente()){
+                if (_actual.hijoDerecho != null){
+                    siguiente = minimoDelSubABB(_actual.hijoDerecho);
+                } else {
+                    siguiente = _actual.padre;
+                    while(siguiente.data.compareTo(_actual.data) < 0){
+                        siguiente = siguiente.padre;
+                    }
+                }
             }
-            return this._actual.data;
+            _actual = siguiente;
+
+            return siguiente.data;
         }
     }
 

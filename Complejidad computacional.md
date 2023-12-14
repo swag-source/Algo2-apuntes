@@ -7,7 +7,7 @@
 5. Notación O grande
 
 ### Análisis de la Complejidad de Algoritmos
-
+***
 * Nos interesa modelar correctamente un problema y pensar algoritmos correctos que resuelvan el problema.
 * Además queremos que no solamente cumplan lo que queremos, sino que lo hagan eficientemente (en términos de consumo de recursos).
 * Entramos en el campo del diseño para TADs.
@@ -37,6 +37,7 @@
 -> i = 0 es X? NO ---> i = 1 es X? NO ---> i = 2 es X? SI ---> return i
 
 #### Ventajas del análisis teórico
+***
 -> No necesitamos ejecutar el algoritmo para saber su "costo" o cuánto tarda.
 -> Vale para cualquier instancia del problema.
 -> No depende del lenguaje de programación y de la maquina donde se ejecuta.
@@ -47,6 +48,7 @@ $\lim_{n \to \infty} \\ Complexity(n) \to$ $f(n)$.
 * Veamos lo que sucede punto por punto.
 
 ### Modelo de cómputo
+***
 * Planteamos una idea abstracta de computadora "universal" donde implementamos nuestro algoritmo.
 * Esta máquina permite hacernos de la noción de tiempo y espacio para nuestro algoritmo.
 -> **Tiempo:** número de pasos que se ejecutan dado un determinado input.
@@ -76,6 +78,7 @@ A = \[2,6,3,5,8\]*
 ![[Pasted image 20231009132344.png]]
 
 ### Tamaño del input (y su importancia)
+***
 * Como dijimos, no nos interesa tanto un numerito en particular (no nos aporta tanta información) sino ver cómo se comporta nuestro algoritmo respecto a los distintos tamaños que le pasemos.
 * Podemos tener infinitos inputs para un algoritmo y queremos ver *"qué es lo peor que puede pasar"*, *"qué es lo mejor que puede pasar"* o (cuidadosamente) *"qué pasa en promedio"*
 
@@ -98,6 +101,7 @@ A = \[2,6,3,5,8\]*
 
 
 ### Principio de invarianza
+***
 * Dado un algoritmo y dos máquinas (abstractas, como veníamos viendo) $\text{M}_{1}$ y $\text{M}_{2}$, que tardan $\text{T}_{1}(n)$ y $\text{T}_{2}(n)$ respectivamente sobre inputs de tamaño n, existe una CONSTANTE k > 0 y un $\text{n}_{0} \in \N$ tales que $\forall n \geq n_{0}$ se verifica que:
 	$T_{1}(n) \leq k * T_{2}(n)$
 
@@ -107,6 +111,7 @@ A = \[2,6,3,5,8\]*
 
 
 ### Análisis asintótico
+***
 * Los distintos algoritmos para resolver un problema (dos algoritmos diferentes) pueden tener mucha diferencia de tiempo.
 * Cuando el tamaño de nuestra información es pequeño, no nos daremos cuenta de "cuan lento" o "cuan rápido" es nuestro algoritmo.
 * Cuando el **tamaño se vuelve muy grande**, podemos observar los **costos** del algoritmo pueden comenzar a variar.
@@ -124,6 +129,7 @@ A = \[2,6,3,5,8\]*
 -> $\Theta$ (theta) orden exacto de la función (una función h acotada por otras dos funciones f y g, similar al sandwich de análisis 1).
 
 ### O grande
+***
 * Se considera a una cota superior para el tiempo de ejecución de un algoritmo (no podrá pasar de ese valor).
 * f $\in$ O(g) nos dice que f **no crecerá NUNCA** más rápido que g => g es cota superior de f.
 
@@ -147,7 +153,7 @@ Se considera a una cota superior para el tiempo de ejecución de un algoritmo (n
 ![[Pasted image 20231011193927.png]]
 
 ### Definiciones y propiedades para tener a mano
-
+***
 **Definición de las Cotas**
 ![[Pasted image 20231011191754.png]]
 

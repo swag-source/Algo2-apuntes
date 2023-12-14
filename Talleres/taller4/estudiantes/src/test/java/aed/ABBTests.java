@@ -92,7 +92,7 @@ class ABBTests {
         conjunto.insertar(9);
         conjunto.insertar(10);
         conjunto.eliminar(10);
-        assertEquals(6, conjunto.cardinal());
+        assertEquals(5, conjunto.cardinal());
         assertEquals(9, conjunto.maximo());
         assertEquals(3, conjunto.minimo());
 

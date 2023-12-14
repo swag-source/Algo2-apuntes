@@ -9,6 +9,28 @@
 
 Playlist ABB y AVL: https://www.youtube.com/watch?v=62HzsyiQufI&list=PLgKwkU8blA_NxMbxyeHq4l3Zkb4lg51_y
 
+
+### Tabla de costos (complejidades)
+***
+#### ABB
+| Operación |    Costo    |
+|-----------|-------------|
+|  Insertar |  O(n)       |
+|  Eliminar |  O(n)       |
+|  Obtener  |  O(n)       |
+|  Minimo   |  O(n)       |
+|  Maximo   |  O(n)       |
+
+#### AVL
+| Operación |    Costo    |
+|-----------|-------------|
+|  Insertar |  O(log(n))  |
+|  Eliminar |  O(log(n))  |
+|  Obtener  |  O(log(n))  |
+|  Minimo   |  O(log(n))  |
+|  Maximo   |  O(log(n))  |
+
+***
 ### Repaso
 * Planteamos un nuevo capítulo en la materia.
 * Dejamos de lado el mundo de la especificación de problemas y nos concentramos en resolver problemas concretos.
@@ -64,10 +86,10 @@ Podríamos representar la misma idea de diccionario a partir de un arreglo (seq\
 	-> **Prioridad es buscar**: Opción 2
 	-> **Prioridad es manipular la estructura** (insertar, agregar): Opción 1
 
-****
+## Teoría
 
 #### Árboles (estructura de dato)
-
+***
 *¿Podríamos encontrar una estructura para los Diccionarios y Conjuntos con una complejidad menor a lineal O(n) para las operaciones de búsqueda?*
 
 -> Vimos que un arreglo ordenado la búsqueda y obtener era log(n).
@@ -101,7 +123,7 @@ Podríamos representar la misma idea de diccionario a partir de un arreglo (seq\
 
 
 #### Árbol Binario de Busqueda (ABB - Binary Search Tree/BST)
-
+***
 ** Insertar diapositiva de ¿Qué es un arbol binario de busqueda?
 
 ** Insertar ejemplo de un ABB.
@@ -155,7 +177,7 @@ Podríamos representar la misma idea de diccionario a partir de un arreglo (seq\
 * En el peor caso, ambos costos de eliminar son lineales:
 	O(n) + O(n) = O(n)
 ****
-#### Notas extra Complejidad
+#### Notas extra complejidad ABB
 * En los ABB, podemos ver que la complejidad tiene mucho que ver con la "profundida" de nuestro arbol.
 * El caso de la derecha es casi igual a una lista enlazada.
 + Si tenemos los siguientes árboles, vemos que el segundo es más costoso que el primero porque tenemos que comparar linea por linea, en el primero solamente comparamos dependiendo la altura del árbol.
@@ -165,3 +187,27 @@ Podríamos representar la misma idea de diccionario a partir de un arreglo (seq\
 * Si bien n = 7 para ambos árboles, el costo de insertar en el árbol izquierdo es menor al árbol derecho.
 
 -> Decimos que el árbol izquierdo está **Balanceado** y el derecho **Desbalanceado** (porque los elementos están ordenados).
+
+
+### AVL (Adelson-Velskii - Landis)
+***
+**Introducción al tema**
+* Vimos que el peor caso de los ABB está ligado siempre a la altura del árbol.
+* El peor caso es que pasemos una lista ordenada, entonces la complejidad se nos hace O(n)
+* Nos interesa controlar la altura del árbol. -> **BALANCEO**
+
+
+**Introducción al balanceo**
+* ¿Qué altura tiene un árbol completo?
+	-> log(n) 
+
+* Noción intuitiva de balanceo
+	* Todas las ramas del árbol tengan "casi" la misma lóngitud.
+	* Que esté todo medianamente equitativamente distribuido.
+
+#### Balanceo de altura
+* Un arbol se dice **balanceado en altura** si las alturas de los subárboles izquierdo y derecho *de cada nodo* difieren a lo suma (como mucho) una unidad.
+* Introducimos una noción de factor de balanceo, un número que te indica el balanceo de un árbol a partir de su raíz.
+
+![[Pasted image 20231025184538.png]]
+
