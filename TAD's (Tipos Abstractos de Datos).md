@@ -45,7 +45,4 @@ El TAD **conjunto** es una abstracción de un conjunto matemático, que contiene
 
 ![[Pasted image 20230920171003.png]]
 
-### Ejemplo completo de un TAD
-***
-![[Pasted image 20230920171135.png]]
 

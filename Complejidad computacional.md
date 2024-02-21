@@ -102,10 +102,10 @@ A = \[2,6,3,5,8\]*
 
 ### Principio de invarianza
 ***
-* Dado un algoritmo y dos máquinas (abstractas, como veníamos viendo) $\text{M}_{1}$ y $\text{M}_{2}$, que tardan $\text{T}_{1}(n)$ y $\text{T}_{2}(n)$ respectivamente sobre inputs de tamaño n, existe una CONSTANTE k > 0 y un $\text{n}_{0} \in \N$ tales que $\forall n \geq n_{0}$ se verifica que:
+* Dado un algoritmo y dos máquinas (abstractas, como veníamos viendo) $\text{M}_{1}$ y $\text{M}_{2}$, que tardan $\text{T}_{1}(n)$ y $\text{T}_{2}(n)$ respectivamente sobre inputs de tamaño n, existe una CONSTANTE k > 0 y un $\text{n}_{0} \in \mathbb{N}$ tales que $\forall n \geq n_{0}$ se verifica que:
 	$T_{1}(n) \leq k * T_{2}(n)$
 
--> Esto me dice que DOS ejecuciones distintas para un mismo algoritmo, solamente van a diferir en una constante K para valores de entrada suficientemente grandes. (Si tengo una complejidad O(n), otra instancia no puede tardarme O(n log(n)) porque si).
+-> Esto me dice que DOS ejecuciones distintas para un mismo algoritmo, solamente van a diferir en una constante $K$ para valores de entrada suficientemente grandes. (Si tengo una complejidad O(n), otra instancia no puede tardarme O(n log(n)) porque si).
 
 -> Hace que no necesitemos ninguna unidad temporal para medir el tiempo (no necesitamos que O(...) tenga tiempo (ms, mins, horas))
 
@@ -123,7 +123,7 @@ A = \[2,6,3,5,8\]*
 
 *¿Pero si mejora mi arquitectura, no tardaría menos tiempo en resolver los algoritmos? ¿No sería más rápido ejecutar ahora las operaciones?*
 
-* Planteamos un modelo de medidas de complejidad algoritmica
+* Planteamos un modelo de medidas de complejidad algoritmica.
 -> O (O grande) cota superior.
 -> $\Omega$ (omega) cota inferior.
 -> $\Theta$ (theta) orden exacto de la función (una función h acotada por otras dos funciones f y g, similar al sandwich de análisis 1).
@@ -137,14 +137,16 @@ A = \[2,6,3,5,8\]*
 
 ![[Pasted image 20231009184217.png]]
 
-$\mathbf{\Omega}$ **Notación Omega**
+### $\mathbf{\Omega}$ **Omega**
+***
 Se considera a una cota superior para el tiempo de ejecución de un algoritmo (no podrá pasar de ese valor).
-* f $\in$ O(g) nos dice que f **CRECERÁ SIEMPRE** más rápido que g => g es cota Inferior de f.
+* f $\in \mathcal{\Omega}(g)$ nos dice que f **CRECERÁ SIEMPRE** más rápido que g => g es cota Inferior de f.
 
 ![[Pasted image 20231011193419.png]]
 ![[Pasted image 20231011193353.png]]
 
-**$\mathbf{\Theta}$ Notación Theta (Complejidad justa)**
+### **$\mathbf{\Theta}$ Theta (Complejidad justa)**
+***
 
 ![[Pasted image 20231011193844.png]]
 
